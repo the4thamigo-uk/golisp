@@ -42,3 +42,35 @@ var (
 		return x / y
 	})
 )
+
+func car(args []val) (val, error) {
+	if len(args) != 1 {
+		return nil, fmt.Errorf("car needs one argument")
+	}
+	list, ok := interface{}(args[0]).(listval)
+	if !ok {
+		return nil, fmt.Errorf("car requires a list argument")
+	}
+
+	if len(list) == 0 {
+		return nil, nil
+	}
+
+	return list[0], nil
+}
+
+func cdr(args []val) (val, error) {
+	if len(args) != 1 {
+		return nil, fmt.Errorf("cdr needs one argument")
+	}
+	list, ok := interface{}(args[0]).(listval)
+	if !ok {
+		return nil, fmt.Errorf("cdr requires a list argument")
+	}
+
+	if len(list) < 2 {
+		return nil, nil
+	}
+
+	return list[1:], nil
+}

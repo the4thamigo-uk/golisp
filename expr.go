@@ -70,5 +70,5 @@ func (se sexpr) eval(e *env) (val, error) {
 		// apply
 		return f.val(vals[1:])
 	}
-	return &vals, nil
+	return vals, nil
 }

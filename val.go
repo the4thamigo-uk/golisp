@@ -46,14 +46,14 @@ func (f *funcval) print() error {
 
 type listval []val
 
-func (l *listval) print() error {
+func (l listval) print() error {
 	if l == nil {
 		return fmt.Errorf("listval is nil")
 	}
 	fmt.Print("(")
-	for i, v := range *l {
+	for i, v := range l {
 		v.print()
-		if i < len(*l)-1 {
+		if i < len(l)-1 {
 			fmt.Print(" ")
 		}
 	}

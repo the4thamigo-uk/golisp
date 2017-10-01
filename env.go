@@ -12,10 +12,12 @@ type env struct {
 func stdEnv() *env {
 	return &env{
 		m: map[string]val{
-			"+": intPlus,
-			"*": intMultiply,
-			"-": intSubtract,
-			"/": intDivide,
+			"+":   intPlus,
+			"*":   intMultiply,
+			"-":   intSubtract,
+			"/":   intDivide,
+			"car": &funcval{car},
+			"cdr": &funcval{cdr},
 		},
 	}
 }

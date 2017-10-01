@@ -25,10 +25,15 @@ func main() {
 			fmt.Println(err)
 			continue
 		}
-		err = v.print()
-		if err != nil {
-			fmt.Println(err)
-			continue
+
+		if v == nil {
+			fmt.Println("nil")
+		} else {
+			err = v.print()
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
 		}
 	}
 }
