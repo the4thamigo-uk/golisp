@@ -52,9 +52,9 @@ func (l *listval) print() error {
 	}
 	fmt.Print("(")
 	for i, v := range *l {
-		fmt.Printf("%v", v)
+		v.print()
 		if i < len(*l)-1 {
-			fmt.Print(",")
+			fmt.Print(" ")
 		}
 	}
 	fmt.Print(")")
