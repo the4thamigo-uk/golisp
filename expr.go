@@ -46,19 +46,13 @@ type sexpr []expr
 func (se sexpr) eval(e *env) (val, error) {
 
 	if len(se) > 0 {
-		if s, ok := (se[0]).(*symexpr); ok && s.expr == "lambda" {
-			if len(se[1:]) != 2 {
-				return nil, fmt.Errorf("lambda syntax error")
+		if s, ok := (se[0]).(*symexpr); ok {
+			switch s.expr {
+			case "lambda":
+				return lambda(se[1:], e)
+			case "defvar":
+				return defVar(se[1:], e)
 			}
-			params, ok := interface{}(se[1]).(sexpr)
-			if !ok {
-				return nil, fmt.Errorf("lambda params not a sexpr")
-			}
-			body, ok := interface{}(se[2]).(sexpr)
-			if !ok {
-				return nil, fmt.Errorf("lambda body not a sexpr")
-			}
-			return lambda(params, body, e)
 		}
 	}
 

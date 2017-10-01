@@ -20,9 +20,9 @@ func stdEnv() *env {
 	}
 }
 
-func (e *env) add(s string, val val) error {
+func (e *env) add(s *symexpr, val val) error {
 	if e != nil && e.m != nil {
-		e.m[s] = val
+		e.m[s.expr] = val
 		return nil
 	}
 

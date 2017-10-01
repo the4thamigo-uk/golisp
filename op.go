@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 func intOp(op func(int, int) int) *funcval {
@@ -11,7 +12,7 @@ func intOp(op func(int, int) int) *funcval {
 			for i, arg := range args {
 				val, ok := arg.(*intval)
 				if !ok {
-					return nil, fmt.Errorf("intadd arg is not an intval : %v : %v", i, arg)
+					return nil, fmt.Errorf("intadd arg is not an intval : %v : %v : %v", i, arg, reflect.TypeOf(arg))
 				}
 				if val == nil {
 					return nil, fmt.Errorf("intadd arg is nil : %v : %v", i, arg)
